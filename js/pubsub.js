@@ -19,9 +19,77 @@
 // events.on("people.change", someChangeHandler); will fire on any people.change event from the people module
 // events.on("people.change.first", someFirstChangeHandler); will fire on any people.change.first event from the people module
 
-var events = {
+////////////////////////////////////////////////
+//Original Code
+////////////////////////////////////////////////
+// var events = {
 
-  events: {}, //list of events available introduced by the on method
+//   events: {}, //list of events available introduced by the on method
+//   on: function (eventName, fn) {
+//     this.events[eventName] = this.events[eventName] || [];
+//     this.events[eventName].push(fn);
+//   },
+
+//   off: function(eventName, fn) {
+//     if (this.events[eventName]) {
+//       for (var i = 0; i < this.events[eventName].length; i++) {
+//         if (this.events[eventName][i] === fn) {
+//           this.events[eventName].splice(i, 1);
+//           break;
+//         }
+//       };
+//     }
+//   },
+//   emit: function (eventName, data) {
+//     if (this.events[eventName]) {
+//       this.events[eventName].forEach(function(fn) {
+//         fn(data);
+//       });
+//     }
+//   }
+
+// };
+
+// ES2015 (ES6)
+// class Event{
+
+//     constructor(){
+//         this.events = {};
+//     }
+
+//     on(eventName, fn) {
+
+//         this.events[eventName] = this.events[eventName] || [];
+//         this.events[eventName].push(fn);
+//     }
+
+//     off(eventName, fn) {
+
+//         if (this.events[eventName]) {
+//             for (var i = 0; i < this.events[eventName].length; i++) {
+//                 if (this.events[eventName][i] === fn) {
+//                     this.events[eventName].splice(i, 1);
+//                     break;
+//                 }
+//             };
+//         }
+//     }
+
+//     trigger(eventName, data) {
+
+//         if (this.events[eventName]) {
+//             this.events[eventName].forEach(function(fn) {
+//                 fn(data);
+//             });
+//         }
+//     }
+
+// }
+
+//example used in Video #5
+var events = {
+  events: {},
+
   on: function (eventName, fn) {
     this.events[eventName] = this.events[eventName] || [];
     this.events[eventName].push(fn);
@@ -37,12 +105,13 @@ var events = {
       };
     }
   },
+
   emit: function (eventName, data) {
+
     if (this.events[eventName]) {
       this.events[eventName].forEach(function(fn) {
         fn(data);
       });
     }
   }
-
 };
